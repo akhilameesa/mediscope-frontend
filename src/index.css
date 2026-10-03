@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary-dark: #3D52A0;
+    --color-primary-active: #7091E6;
+    --color-secondary-muted: #8697C4;
+    --color-card-border: #ADBBDA;
+    --color-canvas-bg: #EDE8F5;
+    --color-surface-white: #FFFFFF;
+  }
+
+  body {
+    background-color: #EDE8F5;
+    color: #3D52A0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Palette Utility Classes */
+.bg-canvas { background-color: #EDE8F5; }
+.bg-primary-dark { background-color: #3D52A0; }
+.bg-primary-active { background-color: #7091E6; }
+.bg-secondary-muted { background-color: #8697C4; }
+.bg-surface { background-color: #FFFFFF; }
+
+.text-primary-dark { color: #3D52A0; }
+.text-primary-active { color: #7091E6; }
+.text-secondary-muted { color: #8697C4; }
+
+.border-med-border { border-color: #ADBBDA; }
+
+/* Soft Card & Glassmorphism */
+.med-card {
+  background-color: #FFFFFF;
+  border: 1px solid #ADBBDA;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(61, 82, 160, 0.08);
+  transition: all 0.25s ease-in-out;
+}
+
+.med-card:hover {
+  box-shadow: 0 15px 30px -5px rgba(61, 82, 160, 0.12);
+}
+
+.med-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #ADBBDA;
+  box-shadow: 0 10px 25px -5px rgba(61, 82, 160, 0.08);
+}
+
+/* Cumulative Sequential Text Animations */
+/* Text lines MUST NEVER disappear, fade out, replace each other, or shift position after appearing! */
+@keyframes fadeInCumulative {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-seq-1 {
+  opacity: 0;
+  animation: fadeInCumulative 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.anim-seq-2 {
+  opacity: 0;
+  animation: fadeInCumulative 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.anim-seq-3 {
+  opacity: 0;
+  animation: fadeInCumulative 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards;
+}
+
+/* Image Zoom Transition on Hover */
+.med-img-zoom {
+  overflow: hidden;
+  border-radius: 0.875rem;
+}
+
+.med-img-zoom img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.med-img-zoom:hover img {
+  transform: scale(1.04);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDE8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ADBBDA;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8697C4;
+}
+
+/* Print Styles for Clinical Briefing */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
